@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rescue Robot Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+    <h1>🚑 Semi‑Autonomous Search & Rescue Robot</h1>
+    <p>Disaster Environment Monitoring & Hazard Detection</p>
+</header>
+
+<main class="dashboard">
+
+<section class="cards">
+
+<div class="card">
+<h3>🌡 Temperature</h3>
+<h1 id="temperature">-- °C</h1>
+</div>
+
+<div class="card">
+<h3>💧 Humidity</h3>
+<h1 id="humidity">-- %</h1>
+</div>
+
+<div class="card">
+<h3>☣ Gas Level</h3>
+<h1 id="gas">SAFE</h1>
+</div>
+
+<div class="card">
+<h3>📏 Distance</h3>
+<h1 id="distance">-- cm</h1>
+</div>
+
+<div class="card">
+<h3>📍 GPS</h3>
+<p id="gps">
+Latitude : --<br>
+Longitude : --
+</p>
+</div>
+
+<div class="card">
+<h3>🤖 Robot Status</h3>
+<h1 id="status">IDLE</h1>
+</div>
+
+<div class="card">
+<h3>🔋 Battery</h3>
+<h1 id="battery">100%</h1>
+</div>
+
+<div class="card">
+<h3>⚙ Mode</h3>
+<h1 id="mode">MANUAL</h1>
+</div>
+
+</section>
+
+<section class="controls">
+
+<h2>Manual Control</h2>
+
+<div class="control-grid">
+
+<button onclick="move('forward')">⬆ Forward</button>
+
+<div class="middle">
+
+<button onclick="move('left')">⬅ Left</button>
+
+<button class="stop" onclick="move('stop')">⏹ Stop</button>
+
+<button onclick="move('right')">Right ➡</button>
+
+</div>
+
+<button onclick="move('backward')">⬇ Backward</button>
+
+</div>
+
+<div class="mode-buttons">
+
+<button onclick="setMode('AUTO')">AUTO MODE</button>
+
+<button onclick="setMode('MANUAL')">MANUAL MODE</button>
+
+<button onclick="toggleBuzzer()">🔔 BUZZER</button>
+
+</div>
+
+</section>
+
+<section class="camera">
+
+<h2>📷 Live Camera Feed</h2>
+
+<div class="camera-box">
+
+<img id="cameraFeed"
+src=""
+alt="Camera Feed">
+
+</div>
+
+</section>
+
+<section class="alerts">
+
+<h2>🚨 Alerts</h2>
+
+<ul id="alertList">
+<li>No Alerts</li>
+</ul>
+
+</section>
+
+</main>
+
+<footer>
+<p>Model Engineering College | Search & Rescue Robot Dashboard</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
