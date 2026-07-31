@@ -3,10 +3,10 @@
 //======================================
 
 // ESP32 DevKit
-const ESP32_IP = "http://10.174.61.159";
+const ESP32_IP = "http://10.168.129.159";
 
 // ESP32-CAM
-const CAMERA_IP = "http://10.174.61.47";
+const CAMERA_IP = "http://10.168.129.47";
 
 // Camera Stream
 window.onload = function ()

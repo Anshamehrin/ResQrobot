@@ -1,4 +1,4 @@
-/****************************************************
+ /****************************************************
       SEMI-AUTONOMOUS SEARCH & RESCUE ROBOT
                 BLOCK 1 - LIBRARIES
 ****************************************************/
@@ -7,8 +7,6 @@
 #include <WebServer.h>      // Create web server
 #include <FS.h>
 #include <SPIFFS.h>  
-#include <TinyGPS++.h>
-#include <HardwareSerial.h>
  // ESP32-CAM Library
 
 /****************************************************
@@ -26,9 +24,6 @@
 #define BUZZER_PIN 2
 
 //========== L298N MOTOR DRIVER ==========
-//========== GPS MODULE ==========
-#define GPS_RX 26
-#define GPS_TX 27
 #define IN1 14
 #define IN2 15
 #define IN3 16
@@ -42,14 +37,11 @@
 ****************************************************/
 
 // Wi-Fi Hotspot Details
-const char* ssid = "Galaxy S24";
-const char* password = "11102006";
+const char* ssid = "S20";
+const char* password = "ddag8723";
 
 // Create Web Server on Port 80
 WebServer server(80);
-TinyGPSPlus gps;
-HardwareSerial GPS_Serial(2);
-
 /****************************************************
           BLOCK 4 - GLOBAL VARIABLES
 ****************************************************/
@@ -73,10 +65,6 @@ bool autoMode = false;
 
 // Manual Buzzer Control
 bool manualBuzzer = false;
-
-float latitude = 0.0;
-float longitude = 0.0;
-
 
 /****************************************************
           BLOCK 5 - MOTOR FUNCTIONS
@@ -421,9 +409,7 @@ void handleData()
     json += "\"distance\":" + String(distance) + ",";
     json += "\"status\":\"" + robotStatus + "\",";
     json += "\"mode\":\"" + robotMode + "\",";
-    json += "\"battery\":" + String(batteryLevel) + ",";
-    json += "\"latitude\":" + String(latitude, 6) + ",";
-    json += "\"longitude\":" + String(longitude, 6);
+    json += "\"battery\":" + String(batteryLevel);
     json += "}";
 
     server.send(200, "application/json", json);
@@ -490,31 +476,11 @@ void handleBuzzer()
 /****************************************************
                 BLOCK 15 - SETUP
 ****************************************************/
-/****************************************************
-                GPS FUNCTIONS
-****************************************************/
-
-void readGPS()
-{
-    while (GPS_Serial.available())
-    {
-        gps.encode(GPS_Serial.read());
-    }
-
-    if (gps.location.isUpdated())
-{
-    latitude = gps.location.lat();
-    longitude = gps.location.lng();
-}
-}
 void setup()
 {
     // Start Serial Monitor
     Serial.begin(115200);
-    GPS_Serial.begin(9600, SERIAL_8N1, GPS_RX, GPS_TX);
-    Serial.println("GPS Started...");
-
-    //========== Configure Motor Pins ==========
+//========== Configure Motor Pins ==========
     pinMode(IN1, OUTPUT);
     pinMode(IN2, OUTPUT);
     pinMode(IN3, OUTPUT);
@@ -572,8 +538,6 @@ void loop()
 {
     // Handle all web requests
     server.handleClient();
-    readGPS();
-
     // Read sensors
     gasDetection();
     obstacleDetection();
@@ -597,4 +561,3 @@ void loop()
 
     delay(100);
 }
-
