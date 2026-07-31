@@ -1,0 +1,151 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <title>Semi-Autonomous Search & Rescue Robot Dashboard
+ </title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <h1>🚑 Semi-Autonomous Search & Rescue Robot</h1>
+
+    <p>Disaster Environment Monitoring & Hazard Detection</p>
+
+</header>
+
+<main class="dashboard">
+
+<!-- ================= STATUS CARDS ================= -->
+
+<section class="cards">
+
+<div class="card">
+<h3>📏 Obstacle Distance</h3>
+<h1 id="distance">-- cm</h1>
+</div>
+
+<div class="card">
+<h3>☣ Gas Status</h3>
+<h1 id="gas">SAFE</h1>
+</div>
+
+<div class="card">
+<h3>📶 Wi-Fi Status</h3>
+<h1 id="wifi">CONNECTED</h1>
+</div>
+
+<div class="card">
+<h3>📷 Camera Status</h3>
+<h1 id="cameraStatus">ONLINE</h1>
+</div>
+
+<div class="card">
+<h3>🤖 Robot Status</h3>
+<h1 id="status">READY</h1>
+</div>
+
+<div class="card">
+<h3>🚨 Alert</h3>
+<h1 id="alertStatus">NONE</h1>
+</div>
+
+</section>
+
+<!-- ================= CONTROLS ================= -->
+
+<section class="controls">
+
+<h2>🎮 Manual Control</h2>
+
+<div class="control-grid">
+
+<button onclick="move('forward')">⬆ Forward</button>
+
+<div class="middle">
+
+<button onclick="move('left')">⬅ Left</button>
+
+<button class="stop" onclick="move('stop')">⏹ STOP</button>
+
+<button onclick="move('right')">Right ➡</button>
+
+</div>
+
+<button onclick="move('backward')">⬇ Backward</button>
+
+</div>
+
+<div class="mode-buttons">
+
+<button onclick="toggleBuzzer()">
+🔔 Toggle Buzzer
+</button>
+
+</div>
+
+</section>
+
+<!-- ================= CAMERA ================= -->
+
+<section class="camera">
+
+<h2>📷 Live Camera Feed</h2>
+
+<div class="camera-box">
+
+<img
+id="cameraFeed"
+src=""
+alt="Camera Feed">
+
+</div>
+
+</section>
+
+<!-- ================= ALERTS ================= -->
+
+<section class="alerts">
+
+<h2>🚨 Alerts</h2>
+
+<ul id="alertList">
+
+<li>No Alerts</li>
+
+</ul>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+
+Government Model Engineering College
+
+<br>
+
+ResQ Robot Dashboard
+
+</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
