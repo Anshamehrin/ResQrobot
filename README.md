@@ -83,7 +83,7 @@ The dashboard displays:
 
 ##  Team Members
 
-## 👥 Team Members
+##  Team Members
 
 ### Ansha Mehrin M N
 
@@ -97,6 +97,7 @@ The dashboard displays:
 
 ### Aavanthika M Nair
 
+- System design and project integration
 - Hardware assembly
 - Wiring and component integration
 - Mechanical setup
@@ -105,6 +106,8 @@ The dashboard displays:
 
 ### Arsha Karinkallayi
 
+- System design and project integration
+- Sensor integration and testing
 - Hardware assembly
 - Wiring and component integration
 - Mechanical setup
