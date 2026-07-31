@@ -1,4 +1,6 @@
-# ResQRobot - Smart Rescue Robot using ESP32
+# Semi-Autonomous Search and Rescue Robot for Disaster Environment Monitoring and Hazard Localization
+
+## ResQRobot - Smart Rescue Robot using ESP32
 
 A smart IoT-based rescue robot designed to assist in emergency and disaster situations. The robot can detect gas leaks, avoid obstacles, provide live location updates, stream video through an ESP32-CAM, and display all information on a web dashboard for remote monitoring.
 
