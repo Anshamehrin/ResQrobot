@@ -81,31 +81,35 @@ The dashboard displays:
 * Cloud data logging
 * Machine learning-based obstacle avoidance
 
-##  License
-
-This project is licensed under the MIT License.
-
 ##  Team Members
+
+## 👥 Team Members
 
 ### Ansha Mehrin M N
 
-* System design and project integration
-* ESP32 firmware development
-* ESP32-CAM programming
-* Web dashboard development
-* Sensor integration and testing
-* Software debugging and optimization
-* GitHub repository management
-* Project documentation
+- System design and project integration
+- ESP32 firmware development
+- ESP32-CAM programming
+- Web dashboard development
+- Sensor integration and testing
+- GitHub repository management
+- Project documentation
 
-### Aavanthika M Nair & Arsha Karinkallayi
+### Aavanthika M Nair
 
-* Hardware assembly
-* Wiring and component integration
-* Mechanical setup
-* Robot chassis setup
-* Assistance with hardware testing
- 
+- Hardware assembly
+- Wiring and component integration
+- Mechanical setup
+- Robot chassis setup
+- Assistance with hardware testing
+
+### Arsha Karinkallayi
+
+- Hardware assembly
+- Wiring and component integration
+- Mechanical setup
+- Robot chassis setup
+- Assistance with hardware testing
 
 Electronics and Communication Engineering
 Model Engineering College , Thrikkakara
