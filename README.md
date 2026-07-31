@@ -111,6 +111,8 @@ The dashboard displays:
 - Robot chassis setup
 - Assistance with hardware testing
 
-Electronics and Communication Engineering
-Model Engineering College , Thrikkakara
-Kerala, India 
+<p align="center">
+Electronics and Communication Engineering<br>
+Model Engineering College, Thrikkakara<br>
+Kerala, India
+</p>
