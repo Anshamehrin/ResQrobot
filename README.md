@@ -87,7 +87,7 @@ This project is licensed under the MIT License.
 
 ##  Team Members
 
-# Ansha Mehrin M N
+### Ansha Mehrin M N
 
 * System design and project integration
 * ESP32 firmware development
@@ -98,7 +98,7 @@ This project is licensed under the MIT License.
 * GitHub repository management
 * Project documentation
 
-# Aavanthika M Nair & Arsha Karinkallayi
+### Aavanthika M Nair & Arsha Karinkallayi
 
 * Hardware assembly
 * Wiring and component integration
