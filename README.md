@@ -26,29 +26,7 @@ As climate change increases the frequency of wildfires, flooding, and resulting 
 
 ## System Architecture
 
-```
-[Ultrasonic Sensor]   [MQ-2 Gas Sensor]   [NEO-6M GPS]
-        |                    |                  |
-        +--------------------+------------------+
-                             |
-                          [ESP32]  ----> Motor Driver (L298N) ----> DC Motors
-                             |
-                    Wi-Fi (sensor data as JSON)
-                             |
-                     [Laptop / Server]
-                     - Receives sensor data
-                     - Pulls ESP32-CAM video stream
-                     - Runs OpenCV + YOLO for human/
-                       motion/fire detection
-                             |
-                    Wi-Fi (data + alerts)
-                             |
-                    [Flutter Mobile App]
-                    - Live video feed
-                    - GPS location on map
-                    - Gas level / distance readouts
-                    - Hazard alerts
-```
+![System Architecture](images/resqrobot_architecture.png)
 
 ## Hardware Components
 
