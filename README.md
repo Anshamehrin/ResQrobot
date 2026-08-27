@@ -2,122 +2,156 @@
 
 ## ResQRobot - Smart Rescue Robot using ESP32
 
-A smart IoT-based rescue robot designed to assist in emergency and disaster situations. The robot can detect gas leaks, avoid obstacles, provide live location updates, stream video through an ESP32-CAM, and display all information on a web dashboard for remote monitoring.
+A smart IoT-based rescue robot designed to assist in disaster response and hazardous-environment assessment by remotely monitoring areas that may be unsafe for humans. The robot detects gas leaks, avoids obstacles, provides live location updates, streams video through an ESP32-CAM, and uses computer vision (OpenCV + YOLO) to detect humans, motion, and fire/smoke. All data and alerts are displayed on a Flutter-based mobile app for remote monitoring.
+
+As climate change increases the frequency of wildfires, flooding, and resulting infrastructure damage, ResQRobot aims to reduce the need for responders to enter hazardous zones blindly — replacing blind entry with informed entry during the critical early phase of disaster response.
+
+> **Note:** This project is currently under active development. See [Project Status](#project-status) below for what is implemented vs. in progress.
 
 ## Features
 
-*   **Live Camera Streaming** using ESP32-CAM
-*   **Gas Leakage Detection** using MQ-2 Gas Sensor
-*   **Obstacle Detection** using HC-SR04 Ultrasonic Sensor
-*   **Buzzer Alert** for gas leaks and obstacles
-*   **Robot Movement Control** (Forward, Backward, Left, Right, Stop)
-*   **GPS Tracking** for real-time location
-*   **Web Dashboard** for monitoring robot status
-*   **Wi-Fi Connectivity** for remote access
+- **Live Camera Streaming** using ESP32-CAM
+- **Gas Leakage Detection** using MQ-2 Gas Sensor
+- **Obstacle Detection** using HC-SR04 Ultrasonic Sensor, with autonomous obstacle-stop
+- **Human Detection** using a pretrained YOLO model on the live camera feed
+- **Motion Detection** using OpenCV background subtraction
+- **Fire/Smoke Detection** using OpenCV-based visual analysis
+- **Buzzer Alert** for gas leaks and obstacles
+- **Remote Robot Movement Control** (Forward, Backward, Left, Right, Stop) via mobile app
+- **GPS Tracking** for real-time location
+- **Flutter Mobile App** for live video, sensor data, location, and hazard alerts
+- **Wi-Fi Connectivity** for remote access
 
+## System Architecture
 
-##  Hardware Components
+```
+[Ultrasonic Sensor]   [MQ-2 Gas Sensor]   [NEO-6M GPS]
+        |                    |                  |
+        +--------------------+------------------+
+                             |
+                          [ESP32]  ----> Motor Driver (L298N) ----> DC Motors
+                             |
+                    Wi-Fi (sensor data as JSON)
+                             |
+                     [Laptop / Server]
+                     - Receives sensor data
+                     - Pulls ESP32-CAM video stream
+                     - Runs OpenCV + YOLO for human/
+                       motion/fire detection
+                             |
+                    Wi-Fi (data + alerts)
+                             |
+                    [Flutter Mobile App]
+                    - Live video feed
+                    - GPS location on map
+                    - Gas level / distance readouts
+                    - Hazard alerts
+```
 
-* ESP32 Dev Module
-* ESP32-CAM
-* HC-SR04 Ultrasonic Sensor
-* MQ-2 Gas Sensor
-* GPS Module (NEO-6M)
-* L298N Motor Driver
-* 2 × DC Gear Motors
-* Buzzer
-* Robot Chassis
-* Wheels
-* Battery Pack
-* Jumper Wires
+## Hardware Components
 
-##  Software & Tools
+- ESP32 Dev Module
+- ESP32-CAM
+- FTDI Programmer (for flashing ESP32-CAM)
+- HC-SR04 Ultrasonic Sensor
+- MQ-2 Gas Sensor
+- GPS Module (NEO-6M)
+- L298N Motor Driver
+- 2 x DC Gear Motors
+- Buzzer
+- Robot Chassis
+- Wheels
+- Li-ion Battery Pack with BMS
+- Buck Converter (5V regulator)
+- Jumper Wires / PCB
 
-* Arduino IDE
-* ESP32 Board Package
-* Wokwi Simulator (for initial testing)
-* HTML
-* CSS
-* JavaScript
-* Git & GitHub
+## Software & Tools
 
-##  Working Principle
+- Arduino IDE (ESP32 firmware)
+- ESP32 Board Package
+- Python
+- OpenCV
+- YOLOv8 (pretrained, for human detection)
+- Flutter & Dart (mobile app)
+- Wokwi Simulator (used for initial testing)
+- Git & GitHub
 
-1. The ESP32 continuously reads data from the ultrasonic sensor and gas sensor.
-2. The ultrasonic sensor measures the distance to nearby obstacles.
-3. If an obstacle is detected within the safety range, the robot stops to prevent collision.
-4. The MQ-2 gas sensor monitors the environment for harmful gas.
-5. If gas concentration exceeds the threshold, the buzzer is activated and an alert is generated.
-6. The GPS module provides the robot's live location.
-7. The ESP32-CAM streams live video to the dashboard.
-8. All sensor readings, GPS location, and camera feed are displayed on the web dashboard in real time.
+## Working Principle
 
-##  Dashboard
+1. The ESP32 continuously reads data from the ultrasonic sensor and gas sensor, and tracks location via the GPS module.
+2. The ultrasonic sensor measures the distance to nearby obstacles. If an obstacle is detected within the safety range, the robot autonomously stops to prevent collision.
+3. The MQ-2 gas sensor monitors the environment for harmful/combustible gas. If concentration exceeds a set threshold, the buzzer is activated and an alert is generated.
+4. The ESP32-CAM streams live video, which is processed on a laptop using OpenCV and a pretrained YOLO model to detect humans, motion, and fire/smoke.
+5. All sensor readings, GPS location, camera feed, and CV-based hazard alerts are sent over Wi-Fi and displayed in real time on the Flutter mobile app.
+6. A human operator remotely controls robot movement via the app, while the robot autonomously handles obstacle-stop, gas monitoring, and hazard alerting — a semi-autonomous design that keeps critical navigation judgment human-led while automating continuous safety monitoring.
 
-The dashboard displays:
+## Mobile App
 
-* Live camera feed
-* Gas sensor value
-* Obstacle distance
-* Robot status
-* GPS location
-* Alert notifications
+The Flutter app displays:
 
-##  Applications
+- Live camera feed
+- Gas sensor value
+- Obstacle distance
+- Robot status and movement controls
+- GPS location on a map
+- Real-time hazard alerts (human/motion/fire detected, gas leak, obstacle)
 
-* Disaster response
-* Search and rescue operations
-* Hazardous gas monitoring
-* Industrial inspection
-* Mine safety
-* Fire emergency support
-* Remote surveillance
+## Applications
 
-##  Future Improvements
+- Disaster response and search and rescue
+- Post-flood structural and hazard assessment
+- Wildfire-affected zone reconnaissance
+- Hazardous gas monitoring
+- Industrial inspection and mine safety
+- Remote surveillance in inaccessible areas
 
-* AI-based human detection
-* Fire detection using computer vision
-* Autonomous path planning
-* Voice control
-* Mobile application
-* Cloud data logging
-* Machine learning-based obstacle avoidance
+## Project Status
 
-##  Team Members
+- [x] Individual hardware components (ultrasonic, gas sensor, GPS, ESP32-CAM) tested independently
+- [x] Hardware assembly complete
+- [x] System architecture and communication pipeline finalized
+- [ ] Full sensor-to-app integration (in progress)
+- [ ] OpenCV + YOLO pipeline integration (in progress)
+- [ ] Flutter app development (in progress)
+- [ ] End-to-end field testing
 
-##  Team Members
+## Future Improvements
+
+- Fine-tuned/custom-trained detection models for fire and smoke
+- Autonomous path planning
+- LoRa or cellular connectivity for extended range in areas without Wi-Fi infrastructure
+- Voice control
+- Cloud data logging and post-mission incident reports
+- Ruggedized, IP-rated enclosure for field deployment
+
+## Team Members
 
 ### Ansha Mehrin M N
-
 - System design and project integration
 - ESP32 firmware development
 - ESP32-CAM programming
-- Web dashboard development
-- Sensor integration and testing
 - GitHub repository management
 - Project documentation
 
 ### Aavanthika M Nair
-
 - System design and project integration
-- Hardware assembly
-- Wiring and component integration
-- Mechanical setup
+- Hardware assembly, wiring, and mechanical setup
+- Sensor integration and testing
 - Robot chassis setup
 - Assistance with hardware testing
 
 ### Arsha Karinkallayi
-
 - System design and project integration
 - Sensor integration and testing
-- Hardware assembly
-- Wiring and component integration
-- Mechanical setup
-- Robot chassis setup
+- Hardware assembly, wiring, and mechanical setup
 - Assistance with hardware testing
 
-<p align="center">
-Electronics and Communication Engineering<br>
-Model Engineering College, Thrikkakara<br>
+### Abhay Arakkal
+- Computer vision pipeline development (OpenCV, YOLO integration)
+- Flutter mobile app development
+- Sensor data and alert integration with the app
+- Testing and validation of detection accuracy
+
+Electronics and Communication Engineering
+Model Engineering College, Thrikkakara
 Kerala, India
-</p>
