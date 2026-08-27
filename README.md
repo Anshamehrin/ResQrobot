@@ -6,6 +6,8 @@ A smart IoT-based rescue robot designed to assist in disaster response and hazar
 
 As climate change increases the frequency of wildfires, flooding, and resulting infrastructure damage, ResQRobot aims to reduce the need for responders to enter hazardous zones blindly — replacing blind entry with informed entry during the critical early phase of disaster response.
 
+![ResQRobot Hardware Assembly](images/robot_hardware.webp)
+
 > **Note:** This project is currently under active development. See [Project Status](#project-status) below for what is implemented vs. in progress.
 
 ## Features
